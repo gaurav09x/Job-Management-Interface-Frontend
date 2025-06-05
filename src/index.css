@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: Satoshi-Variable ;
+    src: url('../src/assets/fonts/Satoshi-Variable.ttf');
+    font-display: swap;
+}
+body{
+    font-family: Satoshi-Variable ;
+    background-color: #fbfbff;
+}
+
+
+input[type="date"] {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+input[type="date"]::before {
+    content: '';
+    background: url('./assets/icons/dateInputIcon.svg') no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
