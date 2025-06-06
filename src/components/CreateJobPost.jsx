@@ -106,7 +106,7 @@ export function CreateJobPost({ setCreateJobs }) {
       setIsLoading(true);
       setStatusMessage({ type: "info", message: "Submitting job posting..." });
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/get-job-post`, {
+      const response = await fetch('https://job-management-interface-backend.onrender.com/api/set-job-post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
