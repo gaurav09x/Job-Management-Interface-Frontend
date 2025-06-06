@@ -30,7 +30,7 @@ const handleJobTypeChange = (option) => {
 
   const fetchJobPost = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/get-job-post`);
+      const response = await fetch('https://job-management-interface-backend.onrender.com/api/get-job-post');
       const data = await response.json();
       setDisplayJobs(data.data);
       setFilteredJobs(data.data);
