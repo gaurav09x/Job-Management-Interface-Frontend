@@ -26,6 +26,7 @@ export function CreateJobPost({ setCreateJobs }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
   const [statusMessage, setStatusMessage] = useState({ type: "", message: "" });
+  const [focusedField, setFocusedField] = useState("");
 
   const [newJobPost, setNewJobPost] = useState({
     job_title: "",
@@ -171,7 +172,7 @@ export function CreateJobPost({ setCreateJobs }) {
         ref={sectionRef}
         className="bg-white shadow-lg p-8 rounded-xl w-full max-w-4xl scale-[80%]"
       >
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Job Opening</h2>
+        <h2 className="text-2xl text-center text-[24px] font-[700] text-gray-800 mb-6">Create Job Opening</h2>
         
         {statusMessage.message && (
           <div className={`mb-4 p-3 rounded-lg text-center ${
@@ -186,41 +187,73 @@ export function CreateJobPost({ setCreateJobs }) {
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-6">
+              {/* Job Title */}
               <div>
-                <label htmlFor="jobTitle" className="block text-gray-600 text-[20px] mb-2 font-[600]">Job Title</label>
-                <input 
+                <label
+                  htmlFor="jobTitle"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "jobTitle" || jobTitle ? "text-[#222222]" : "text-[#636363]"
+                  }`}
+                >
+                  Job Title
+                </label>
+                <input
                   required
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
-                  type="text" 
-                  name="jobTitle" 
-                  id="jobTitle" 
-                  placeholder="Job Title, Role" 
+                  onFocus={() => setFocusedField("jobTitle")}
+                  onBlur={() => setFocusedField("")}
+                  type="text"
+                  name="jobTitle"
+                  id="jobTitle"
+                  placeholder="Job Title, Role"
                   className="w-full font-[600] text-[18px] border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700"
                 />
               </div>
               
+              {/* Location */}
               <div>
-                <label htmlFor="location" className="block text-gray-600 text-[20px] mb-2 font-[600]">Location</label>
+                <label
+                  htmlFor="location"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "location" || location ? "text-[#222222]" : "text-[#636363]"
+                  }`}
+                >
+                  Location
+                </label>
                 <Location
-                  placeholder="Choose Preferred Location" 
-                  iconVisible={false} 
+                  placeholder="Choose Preferred Location"
+                  iconVisible={false}
                   onCitySelect={handleLocationSelect}
-                  customStyle="w-full text-[16px] text-[#656565] border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-gray-700" 
+                  customStyle="w-full text-[16px] text-[#656565] border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-gray-700"
                   initialValue={location}
+                  onFocus={() => setFocusedField("location")}
+                  onBlur={() => setFocusedField("")}
                 />
               </div>
               
+              {/* Salary Range */}
               <div>
-                <label htmlFor="salary" className="block text-gray-600 text-[20px] mb-2 font-[600]">Salary Range</label>
+                <label
+                  htmlFor="salary"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "salaryMin" || focusedField === "salaryMax" || minSalary || maxSalary
+                      ? "text-[#222222]"
+                      : "text-[#636363]"
+                  }`}
+                >
+                  Salary Range
+                </label>
                 <div className="flex gap-4">
                   <div className="relative flex-1">
-                    <input 
-                      type="text" 
-                      name="salaryMin" 
+                    <input
+                      type="text"
+                      name="salaryMin"
                       value={minSalary}
                       onChange={(e) => setMinSalary(e.target.value)}
-                      placeholder="₹0" 
+                      onFocus={() => setFocusedField("salaryMin")}
+                      onBlur={() => setFocusedField("")}
+                      placeholder="₹0"
                       className="w-full placeholder:text-[16px] border border-gray-300 rounded-lg p-3 pl-10 focus:outline-none focus:ring-2 focus:ring-gray-700"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -230,13 +263,15 @@ export function CreateJobPost({ setCreateJobs }) {
                     </div>
                   </div>
                   <div className="relative flex-1">
-                    <input 
+                    <input
                       required
-                      type="text" 
-                      name="salaryMax" 
+                      type="text"
+                      name="salaryMax"
                       value={maxSalary}
                       onChange={(e) => setMaxSalary(e.target.value)}
-                      placeholder="₹12,00,000" 
+                      onFocus={() => setFocusedField("salaryMax")}
+                      onBlur={() => setFocusedField("")}
+                      placeholder="₹12,00,000"
                       className="w-full placeholder:text-[16px] border border-gray-300 rounded-lg p-3 pl-10 focus:outline-none focus:ring-2 focus:ring-gray-700"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -250,26 +285,46 @@ export function CreateJobPost({ setCreateJobs }) {
             </div>
 
             <div className="space-y-6">
+              {/* Company Name */}
               <div>
-                <label htmlFor="companyName" className="block text-gray-600 text-[20px] mb-2 font-[600]">Company Name</label>
-                <input 
+                <label
+                  htmlFor="companyName"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "companyName" || companyName ? "text-[#222222]" : "text-[#636363]"
+                  }`}
+                >
+                  Company Name
+                </label>
+                <input
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  type="text" 
-                  name="companyName" 
-                  id="companyName" 
-                  placeholder="Amazon, Microsoft, Swiggy" 
+                  onFocus={() => setFocusedField("companyName")}
+                  onBlur={() => setFocusedField("")}
+                  type="text"
+                  name="companyName"
+                  id="companyName"
+                  placeholder="Amazon, Microsoft, Swiggy"
                   className="w-full font-[600] text-[18px] border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700"
                 />
               </div>
               
+              {/* Job Type */}
               <div>
-                <label htmlFor="jobType" className="block text-gray-600 text-[20px] mb-2 font-[600]">Job Type</label>
+                <label
+                  htmlFor="jobType"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "jobType" || jobType ? "text-[#222222]" : "text-[#636363]"
+                  }`}
+                >
+                  Job Type
+                </label>
                 <div className="relative text-[#848484]">
-                  <select 
+                  <select
                     value={jobType}
                     onChange={handleJobTypeChange}
-                    name="jobType" 
+                    onFocus={() => setFocusedField("jobType")}
+                    onBlur={() => setFocusedField("")}
+                    name="jobType"
                     id="jobType"
                     className="w-full border border-gray-300 rounded-lg p-3 appearance-none focus:outline-none focus:ring-2 focus:ring-gray-700"
                   >
@@ -284,15 +339,25 @@ export function CreateJobPost({ setCreateJobs }) {
                 </div>
               </div>
               
+              {/* Application Deadline */}
               <div>
-                <label htmlFor="deadline" className="block text-gray-600 text-[20px] mb-2 font-[600]">Application Deadline</label>
+                <label
+                  htmlFor="deadline"
+                  className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                    focusedField === "deadline" || deadline ? "text-[#222222]" : "text-[#636363]"
+                  }`}
+                >
+                  Application Deadline
+                </label>
                 <div className="relative">
-                  <input 
-                    type="date" 
-                    name="deadline" 
+                  <input
+                    type="date"
+                    name="deadline"
                     id="deadline"
                     value={deadline}
-                    onChange={(e) => setDeadline(e.target.value)} 
+                    onChange={(e) => setDeadline(e.target.value)}
+                    onFocus={() => setFocusedField("deadline")}
+                    onBlur={() => setFocusedField("")}
                     className="text-[#848484] w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700"
                   />
                 </div>
@@ -300,14 +365,24 @@ export function CreateJobPost({ setCreateJobs }) {
             </div>
           </div>
           
+          {/* Job Description */}
           <div className="mt-6">
-            <label htmlFor="jobDescription" className="block text-gray-600 text-[20px] mb-2 font-[600]">Job Description</label>
-            <textarea 
-              name="jobDescription" 
-              id="jobDescription" 
+            <label
+              htmlFor="jobDescription"
+              className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
+                focusedField === "jobDescription" || jobDescription ? "text-[#222222]" : "text-[#636363]"
+              }`}
+            >
+              Job Description
+            </label>
+            <textarea
+              name="jobDescription"
+              id="jobDescription"
               rows="6"
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
+              onFocus={() => setFocusedField("jobDescription")}
+              onBlur={() => setFocusedField("")}
               placeholder="Please share a description to let the candidate know more about the job role"
               className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700"
             ></textarea>
