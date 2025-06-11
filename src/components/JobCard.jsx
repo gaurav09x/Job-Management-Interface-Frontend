@@ -68,7 +68,7 @@ function JobCard({brand_logo_img_url, job_title, job_type, experience_level, loc
             <div className="mt-3 text-[#555555] text-[14px] font-[500]">
                 {formatDescription(job_description)}
             </div>
-            <button className="w-full bg-[#00AAFF] text-white shadow-lg ring-1 ring-gray-300/20 border border-[#00AAFF] rounded-[10px] py-[12px] font-[600] mt-5">Apply Now</button>
+            <button className="w-full bg-[#00AAFF] text-white shadow-lg ring-1 ring-gray-300/20 border border-[#00AAFF] rounded-[10px] py-[12px] font-[600] text-[16px] mt-5">Apply Now</button>
         </div>
     );
 }
