@@ -83,14 +83,14 @@ const handleJobTypeChange = (option) => {
           <div>
             <img src="/logo.svg" alt="company logo" />
           </div>
-          <nav className='text-[16px] flex gap-10'>
+          <nav className='text-[16px] font-[600] flex gap-10'>
             <a href="#">Home</a>
             <a href="#">Find Jobs</a>
             <a href="#">Find Talents</a>
             <a href="#">About Us</a>
             <a href="#">Testimonials</a>
           </nav>
-          <button onClick={() => setCreateJobs(true)} className='bg-gradient-to-tr from-[#A128FF] to-[#6100AD] text-white px-4 py-2 rounded-full'>
+          <button onClick={() => setCreateJobs(true)} className='bg-gradient-to-tr from-[#A128FF] to-[#6100AD] text-white px-4 py-2 rounded-full text-[16px] font-[600]'>
             Create Jobs
           </button>
         </section>
