@@ -313,7 +313,7 @@ export function CreateJobPost({ setCreateJobs }) {
                 <label
                   htmlFor="jobType"
                   className={`block text-[20px] mb-2 font-[600] transition-colors duration-200 ${
-                    focusedField === "jobType" || jobType ? "text-[#222222]" : "text-[#636363]"
+                    focusedField === "jobType" || jobType ? "text-[#636363]" : "text-[#636363]"
                   }`}
                 >
                   Job Type
