@@ -384,7 +384,7 @@ export function CreateJobPost({ setCreateJobs }) {
               onFocus={() => setFocusedField("jobDescription")}
               onBlur={() => setFocusedField("")}
               placeholder="Please share a description to let the candidate know more about the job role"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-700 text-[16px] font-[500]"
             ></textarea>
           </div>
           
